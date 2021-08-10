@@ -6,4 +6,10 @@ Rails.application.routes.draw do
     resource :auth do
       post '/login'=> 'auth#login'
     end
+    resource :source_of_fund do 
+      post '/add' => 'source_of_fund#add'
+    end
+    resource :income do
+      post '/add' => 'income#add'
+    end
 end

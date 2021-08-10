@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
     def authorize_request
         header = request.headers['Authorization']
         header = header.split(' ').last if header
-        route_service = RouteService.new(params)
+        # route_service = RouteService.new(params)
         if header.present?
           begin
             # hasil decode :id, :roles
@@ -33,11 +33,9 @@ class ApplicationController < ActionController::API
         #     show_response(BaseResponse.new(Constants::RESPONSE_ERROR, "Unauthorized!", nil, Constants::ERROR_CODE_HEADER_INVALID))
         #   rescue JWT::DecodeError => e
         #     show_response(BaseResponse.new(Constants::RESPONSE_ERROR, "Unauthorized!", nil, Constants::ERROR_CODE_HEADER_INVALID))
-        #   end
-        # else
-        #   show_response(BaseResponse.new(Constants::RESPONSE_ERROR, "Invalid Header!", nil, Constants::ERROR_CODE_HEADER_INVALID))
-        # end
           end
+        else
+          show_response(BaseResponse.new(Constants::RESPONSE_ERROR, "Invalid Header! #{}", nil, Constants::ERROR_CODE_HEADER_INVALID))
         end
       end
 
